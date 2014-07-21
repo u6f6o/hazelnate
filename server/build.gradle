@@ -1,0 +1,19 @@
+apply plugin: "application"
+
+dependencies {
+    compile "com.google.guava:guava:${guavaVersion}"
+    compile "com.hazelcast:hazelcast:${hazelcastVersion}"
+    compile "com.hazelcast:hazelcast-hibernate3:${hazelcastVersion}"
+    compile "org.hibernate:hibernate-core:${hibernateVersion}"
+}
+
+ext {
+    mainClass = "com.u6f6o.apps.hazelnate.server.HazelcastServerBootstrap"
+    defaultJvmArgs = [ "-Dhazelcast.logging.type=slf4j" ]
+}
+
+task startServer(type: JavaExec, group: "hazelnate") {
+    main mainClass
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs defaultJvmArgs
+}

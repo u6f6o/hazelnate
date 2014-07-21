@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.3.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <group>
+        <name>dev</name>
+        <password>dev-pass</password>
+    </group>
+    <management-center enabled="true">
+        http://localhost:9510/mancenter
+    </management-center>
+    <network>
+        <port auto-increment="true">9511</port>
+        <join>
+            <multicast enabled="false"/>
+            <tcp-ip enabled="true">
+                <member>127.0.0.1</member>
+                <member>127.0.0.1</member>
+            </tcp-ip>
+        </join>
+    </network>
+</hazelcast>

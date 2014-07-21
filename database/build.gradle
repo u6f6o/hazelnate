@@ -1,0 +1,14 @@
+apply plugin: "application"
+
+dependencies {
+    compile "com.h2database:h2:${h2Version}"
+}
+
+ext {
+    mainClass = "com.u6f6o.apps.hazelnate.database.DatabaseBootstrap"
+}
+
+task startDatabase(type: JavaExec, group: "hazelnate") {
+    main mainClass
+    classpath = sourceSets.main.runtimeClasspath
+}

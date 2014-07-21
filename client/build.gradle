@@ -1,0 +1,13 @@
+dependencies {
+    compile "com.h2database:h2:${h2Version}"
+	compile "com.hazelcast:hazelcast:${hazelcastVersion}"
+	compile "com.hazelcast:hazelcast-hibernate3:${hazelcastVersion}"	
+	compile "org.hibernate:hibernate-core:${hibernateVersion}"
+    compile "javassist:javassist:3.12.1.GA"
+	compile "com.google.guava:guava:${guavaVersion}"
+
+    testCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    testCompile "org.spockframework:spock-core:${spockVersion}"
+    testCompile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    testCompile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+}
