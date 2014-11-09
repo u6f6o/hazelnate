@@ -8,5 +8,12 @@ I initially created this project to get a better understanding of the hazelcast 
 * **server**: reprents a single hazelcast server node 
 * **mancenter**, wrapper to start up the hazelcast mancenter    
 
-This project mainly focuses the distributed caching abilities, hazelcast offers in conjunction with hibernate. Other powerful features like in-memory computing etc. are (currently) not covered. 
+This project mainly focuses on the distributed caching abilities, hazelcast offers in conjunction with hibernate. Other powerful features like in-memory computing etc. are (currently) not covered. 
+
+### Quick start
+
+```bash
+git clone https://github.com/u6f6o/hazelnate.git 
+```
+
 
