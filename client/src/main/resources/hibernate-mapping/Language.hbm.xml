@@ -5,8 +5,9 @@
 
 <hibernate-mapping package="com.u6f6o.apps.hazelnate.client.domain">
     <class name="Language" table="LANGUAGE">
+        <cache usage="read-write"/>
         <id name="id" column="LANGUAGE_ID">
-            <generator class="uuid"/>
+            <generator class="native"/>
         </id>
         <property name="acronym" column="ACRONYM"/>
         <property name="name" column="NAME"/>

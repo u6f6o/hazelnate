@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.u6f6o.apps.hazelnate.client.domain">
+    <class name="Inhabitant" table="INHABITANT">
+        <cache usage="read-write"/>
+        <id name="id" column="INHABITANT_ID">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="NAME"/>
+        <property name="age" column="AGE"/>
+        <set name="languages" table="INHABITANT_LANGUAGES" inverse="true" cascade="save-update">
+            <cache usage="read-write"/>
+            <key column="INHABITANT_ID" not-null="true"/>
+            <many-to-many column="LANGUAGE_ID" class="Language" />
+        </set>
+        <many-to-one name="homeland" class="Country" insert="false" update="false">
+            <column name="COUNTRY_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="hometown" class="City" insert="false" update="false">
+            <column name="CITY_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

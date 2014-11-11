@@ -1,17 +1,18 @@
 package com.u6f6o.apps.hazelnate.client.domain;
 
-/**
- * Created by u6f6o on 10/10/14.
- */
-public class City {
-    private String id;
-    private String name;
+import java.util.Set;
 
-    public String getId() {
+public class City {
+    private Long id;
+    private String name;
+    private Country country;
+    private Set<Inhabitant> inhabitants;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -21,5 +22,21 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Set<Inhabitant> getInhabitants() {
+        return inhabitants;
+    }
+
+    public void setInhabitants(Set<Inhabitant> inhabitants) {
+        this.inhabitants = inhabitants;
     }
 }

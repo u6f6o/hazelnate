@@ -1,19 +1,25 @@
 package com.u6f6o.apps.hazelnate.client.domain;
 
-/**
- * Created by u6f6o on 20/10/14.
- */
 public class Language {
 
-    private String id;
+    private Long id;
     private String acronym;
     private String name;
 
-    public String getId() {
+    public Language() {
+    }
+
+    public Language(Long id, String acronym, String name) {
+        this.id = id;
+        this.acronym = acronym;
+        this.name = name;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

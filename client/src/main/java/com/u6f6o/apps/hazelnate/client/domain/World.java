@@ -2,19 +2,16 @@ package com.u6f6o.apps.hazelnate.client.domain;
 
 import java.util.Set;
 
-/**
- * Created by u6f6o on 10/10/14.
- */
 public class World {
-    private String id;
+    private Long id;
     private String name;
     private Set<Country> countries;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

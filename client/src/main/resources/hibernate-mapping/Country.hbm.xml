@@ -7,15 +7,21 @@
     <class name="Country" table="COUNTRY">
         <cache usage="read-write"/>
         <id name="id" column="COUNTRY_ID">
-            <generator class="uuid"/>
+            <generator class="native"/>
         </id>
         <property name="name" column="NAME"/>
         <many-to-one name="world" class="World" insert="false" update="false">
             <column name="WORLD_ID" not-null="true"/>
         </many-to-one>
         <set name="languages" table="COUNTRY_LANGUAGES" inverse="true" cascade="save-update">
-            <key column="COUNTRY_ID"/>
+            <cache usage="read-write"/>
+            <key column="COUNTRY_ID" not-null="true"/>
             <many-to-many column="LANGUAGE_ID" class="Language" />
+        </set>
+        <set name="cities" inverse="true" cascade="save-update">
+            <cache usage="read-write"/>
+            <key column="COUNTRY_ID" not-null="true" />
+            <one-to-many class="City"/>
         </set>
     </class>
 </hibernate-mapping>

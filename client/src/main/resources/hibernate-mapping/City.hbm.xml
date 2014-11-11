@@ -6,9 +6,17 @@
 <hibernate-mapping package="com.u6f6o.apps.hazelnate.client.domain">
     <class name="City" table="CITY">
         <cache usage="read-write"/>
-        <id name="id" column="ID">
-            <generator class="uuid"/>
+        <id name="id" column="CITY_ID">
+            <generator class="native"/>
         </id>
         <property name="name" column="NAME"/>
+        <many-to-one name="country" class="Country" insert="false" update="false">
+            <column name="COUNTRY_ID" not-null="true"/>
+        </many-to-one>
+        <set name="inhabitants" cascade="all">
+            <cache usage="read-write"/>
+            <key column="CITY_ID" not-null="true" />
+            <one-to-many class="Inhabitant"/>
+        </set>
     </class>
 </hibernate-mapping>

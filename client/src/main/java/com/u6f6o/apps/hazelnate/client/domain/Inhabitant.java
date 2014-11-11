@@ -2,13 +2,13 @@ package com.u6f6o.apps.hazelnate.client.domain;
 
 import java.util.Set;
 
-public class Country {
+public class Inhabitant {
     private Long id;
     private String name;
-    private World world;
-    private Set<City> cities;
-
+    private Integer age;
     private Set<Language> languages;
+    private Country homeland;
+    private City hometown;
 
     public Long getId() {
         return id;
@@ -26,12 +26,12 @@ public class Country {
         this.name = name;
     }
 
-    public World getWorld() {
-        return world;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setWorld(World world) {
-        this.world = world;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public Set<Language> getLanguages() {
@@ -42,11 +42,19 @@ public class Country {
         this.languages = languages;
     }
 
-    public Set<City> getCities() {
-        return cities;
+    public Country getHomeland() {
+        return homeland;
     }
 
-    public void setCities(Set<City> cities) {
-        this.cities = cities;
+    public void setHomeland(Country homeland) {
+        this.homeland = homeland;
+    }
+
+    public City getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(City hometown) {
+        this.hometown = hometown;
     }
 }
