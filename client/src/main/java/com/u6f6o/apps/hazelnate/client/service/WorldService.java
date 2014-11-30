@@ -11,6 +11,9 @@ import com.u6f6o.apps.hazelnate.client.rest.transformer.EntityModelTransformer;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.SortedSet;
 import java.util.function.Function;
 
 // TODO: find a name that doesn't remind you on Spring ;-)
@@ -33,6 +36,26 @@ public class WorldService {
         return new TxContext<City, CityModel>()
                 .withTx(session -> (City) session.get(City.class, id),
                         MODEL_TRANSFORMER::transform);
+    }
+
+    public SortedSet<CountryModel> fetchAllCountries() {
+        return new TxContext<Set<Country>, SortedSet<CountryModel>>()
+                .withTx(session -> {
+                    World world = (World) session.get(World.class, 666l);
+                    return world.getCountries();
+                }, MODEL_TRANSFORMER::transformCountries);
+    }
+
+    public SortedSet<CityModel> fetchAllCities() {
+        return new TxContext<Set<City>, SortedSet<CityModel>>()
+                .withTx(session -> {
+                    Set<City> cities = new HashSet<>();
+                    World world = (World) session.get(World.class, 666l);
+                    for (Country country : world.getCountries()) {
+                        cities.addAll(country.getCities());
+                    }
+                    return cities;
+                }, MODEL_TRANSFORMER::transformCities);
     }
 
     private static class TxContext<T, R> {

@@ -15,8 +15,16 @@ public class WorldsEnd {
                 (req, resp) -> WORLD_SERVICE.fetchWorld(),
                 DEFAULT_TRANSFORMER);
 
+        get("/world/countries/all",
+                (req, resp) -> WORLD_SERVICE.fetchAllCountries(),
+                DEFAULT_TRANSFORMER);
+
         get("/world/countries/:countryId",
                 (req, resp) -> WORLD_SERVICE.fetchCountry(Long.valueOf(req.params(":countryId"))),
+                DEFAULT_TRANSFORMER);
+
+        get("/world/cities/all",
+                (req, resp) -> WORLD_SERVICE.fetchAllCities(),
                 DEFAULT_TRANSFORMER);
 
         get("/world/cities/:cityId",

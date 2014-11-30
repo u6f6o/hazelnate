@@ -3,22 +3,16 @@ package com.u6f6o.apps.hazelnate.client.rest.transformer;
 import com.u6f6o.apps.hazelnate.client.domain.*;
 import com.u6f6o.apps.hazelnate.client.rest.model.*;
 
-import java.util.Comparator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
+// TODO generics?
 public class EntityModelTransformer {
+    private static final Comparator<CityModel> CITY_BY_NAME = Comparator.comparing(CityModel::getName);
+    private static final Comparator<CountryModel> COUNTRY_BY_NAME = Comparator.comparing(CountryModel::getName);
 
     public WorldModel transform(World origin) {
-        SortedSet<CountryModel> countries = origin.getCountries() != null
-                ? origin.getCountries().stream()
-                .map(this::transform)
-                .collect(Collectors.toCollection(
-                        () -> new TreeSet<>(Comparator.comparing(CountryModel::getName))))
-                : null;
-
-        return new WorldModel(origin.getId(), origin.getName(), countries);
+        return new WorldModel(origin.getId(), origin.getName(), transformCountries(origin.getCountries()));
     }
 
     public InhabitantModel transform(Inhabitant origin) {
@@ -36,13 +30,6 @@ public class EntityModelTransformer {
     }
 
     public CountryModel transform(Country origin) {
-        SortedSet<CityModel> cities = origin.getCities() != null
-                ? origin.getCities().stream()
-                .map(this::transform)
-                .collect(Collectors.toCollection(
-                        () -> new TreeSet<>(Comparator.comparing(CityModel::getName))))
-                : null;
-
         SortedSet<LanguageModel> languages = origin.getLanguages() != null
                 ? origin.getLanguages().stream()
                 .map(this::transform)
@@ -50,7 +37,7 @@ public class EntityModelTransformer {
                         () -> new TreeSet<>(Comparator.comparing(LanguageModel::getAcronym))))
                 : null;
 
-        return new CountryModel(origin.getId(), origin.getName(), cities, languages);
+        return new CountryModel(origin.getId(), origin.getName(), transformCities(origin.getCities()), languages);
     }
 
     public CityModel transform(City origin) {
@@ -59,5 +46,21 @@ public class EntityModelTransformer {
 
     public LanguageModel transform(Language origin) {
         return new LanguageModel(origin.getId(), origin.getAcronym(), origin.getName());
+    }
+
+    public SortedSet<CountryModel> transformCountries(Set<Country> countries) {
+        Set<Country> nullSafeCountries = countries == null ? new HashSet<>() : countries;
+        return nullSafeCountries.stream()
+                .map(this::transform)
+                .collect(Collectors.toCollection(
+                        () -> new TreeSet<>(COUNTRY_BY_NAME)));
+    }
+
+    public SortedSet<CityModel> transformCities(Set<City> cities) {
+        Set<City> nullSafeCities = cities == null ? new HashSet<>() : cities;
+        return nullSafeCities.stream()
+                .map(this::transform)
+                .collect(Collectors.toCollection(
+                        () -> new TreeSet<>(CITY_BY_NAME)));
     }
 }
