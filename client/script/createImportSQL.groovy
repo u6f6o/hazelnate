@@ -1,5 +1,3 @@
-
-
 import groovy.json.JsonSlurper
 
 def countriesFile;
@@ -15,6 +13,8 @@ def langByAcronym = [:] as TreeMap
 countriesJSON.languages*.each { acronym, name ->
     langByAcronym.put(acronym, name)
 }
+
+println "INSERT INTO WORLD(WORLD_ID, NAME) VALUES (666, 'World');"
 
 countriesJSON.eachWithIndex { country, index ->
     println "INSERT INTO COUNTRY(COUNTRY_ID, NAME, WORLD_ID) VALUES(${index}, '${country.name.common}', '666');"
