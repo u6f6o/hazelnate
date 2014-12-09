@@ -15,7 +15,7 @@
         </many-to-one>
         <set name="inhabitants" cascade="all">
             <cache usage="read-write"/>
-            <key column="CITY_ID" not-null="true" />
+            <key column="CITY_ID"/>
             <one-to-many class="Inhabitant"/>
         </set>
     </class>

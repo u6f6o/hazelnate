@@ -16,10 +16,10 @@
             <key column="INHABITANT_ID" not-null="true"/>
             <many-to-many column="LANGUAGE_ID" class="Language" />
         </set>
-        <many-to-one name="homeland" class="Country" insert="false" update="false">
+        <many-to-one name="homeland" class="Country">
             <column name="COUNTRY_ID" not-null="true"/>
         </many-to-one>
-        <many-to-one name="hometown" class="City" insert="false" update="false">
+        <many-to-one name="hometown" class="City">
             <column name="CITY_ID" not-null="true"/>
         </many-to-one>
     </class>
