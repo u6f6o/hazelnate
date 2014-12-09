@@ -1,9 +1,29 @@
-apply plugin: "application"
+apply plugin: "idea"
+apply plugin: "java"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+configurations.all {
+    resolutionStrategy {
+        failOnVersionConflict()
+        force "org.slf4j:slf4j-api:${slf4jVersion}"
+        force "org.glassfish:javax.el:3.0.0"
+    }
+}
 
 dependencies {
     compile "org.eclipse.jetty:jetty-webapp:${jettyVersion}"
     compile "org.eclipse.jetty:jetty-jsp:${jettyVersion}"
-
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
 }
 
 ext {
@@ -13,7 +33,6 @@ ext {
     zipFilePath = "${distDir}/hazelcast-${hazelcastVersion}.zip"
     warFilePath = "${distDir}/mancenter-${hazelcastVersion}.war"
 
-    mainClass = "com.u6f6o.apps.hazelnate.mancenter.MancenterBootstrap"
     defaultJvmArgs = [ "-Dhazelcast.logging.type=slf4j" ]
 }
 
@@ -26,6 +45,7 @@ task downloadZip(group: "hazelnate") {
     outputs.file file(zipFilePath)
     logging.setLevel(LogLevel.INFO)
     doLast {
+        new File(distDir).mkdirs()
         ant.get(src: downloadUrl, dest: zipFilePath)
     }
 }
@@ -44,8 +64,12 @@ task extractWar(dependsOn: downloadZip, group: "hazelnate") {
 }
 
 task startMancenter(dependsOn: extractWar, type: JavaExec, group: "hazelnate") {
-    main mainClass
+    main mainClazz
     classpath = sourceSets.main.runtimeClasspath
     jvmArgs = defaultJvmArgs
     args warFilePath
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.1"
 }

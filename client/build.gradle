@@ -1,15 +1,47 @@
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "groovy"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy {
+        failOnVersionConflict()
+        force "org.slf4j:slf4j-api:${slf4jVersion}"
+    }
+}
+
 dependencies {
     compile "com.h2database:h2:${h2Version}"
 	compile "com.hazelcast:hazelcast:${hazelcastVersion}"
 	compile "com.hazelcast:hazelcast-hibernate3:${hazelcastVersion}"	
 	compile "org.hibernate:hibernate-core:${hibernateVersion}"
-    compile "javassist:javassist:3.12.1.GA"
+    compile "javassist:javassist:${javassistVersion}"
 	compile "com.google.guava:guava:${guavaVersion}"
     compile "com.sparkjava:spark-core:${sparkVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
 
     testCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
     testCompile "org.spockframework:spock-core:${spockVersion}"
     testCompile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
     testCompile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+}
+
+task startClient(type: JavaExec, group: "hazelnate") {
+    main mainClazz
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs [ "-Dhazelcast.logging.type=slf4j" ]
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.1"
 }

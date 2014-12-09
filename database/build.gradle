@@ -1,14 +1,23 @@
-apply plugin: "application"
+apply plugin: "idea"
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     compile "com.h2database:h2:${h2Version}"
-}
-
-ext {
-    mainClass = "com.u6f6o.apps.hazelnate.database.DatabaseBootstrap"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
 }
 
 task startDatabase(type: JavaExec, group: "hazelnate") {
-    main mainClass
+    main mainClazz
     classpath = sourceSets.main.runtimeClasspath
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.1"
 }

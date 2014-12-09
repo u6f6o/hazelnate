@@ -1,19 +1,33 @@
-apply plugin: "application"
+apply plugin: "idea"
+apply plugin: "java"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy {
+        failOnVersionConflict()
+        force "org.slf4j:slf4j-api:${slf4jVersion}"
+    }
+}
 
 dependencies {
     compile "com.google.guava:guava:${guavaVersion}"
     compile "com.hazelcast:hazelcast:${hazelcastVersion}"
     compile "com.hazelcast:hazelcast-hibernate3:${hazelcastVersion}"
     compile "org.hibernate:hibernate-core:${hibernateVersion}"
-}
-
-ext {
-    mainClass = "com.u6f6o.apps.hazelnate.server.HazelcastServerBootstrap"
-    defaultJvmArgs = [ "-Dhazelcast.logging.type=slf4j" ]
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
 }
 
 task startServer(type: JavaExec, group: "hazelnate") {
-    main mainClass
+    main mainClazz
     classpath = sourceSets.main.runtimeClasspath
-    jvmArgs defaultJvmArgs
+    jvmArgs [ "-Dhazelcast.logging.type=slf4j" ]
 }
