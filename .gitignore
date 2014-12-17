@@ -19,8 +19,13 @@ build
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-.gradle
+
 build/
+.gradle
+
+# Allow gradle wrapper props and jar file
+!**/gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting
