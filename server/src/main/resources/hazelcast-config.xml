@@ -10,7 +10,7 @@
         http://localhost:9510/mancenter
     </management-center>
     <network>
-        <port auto-increment="true">9511</port>
+        <port auto-increment="true">5701</port>
         <join>
             <multicast enabled="false"/>
             <tcp-ip enabled="true">
