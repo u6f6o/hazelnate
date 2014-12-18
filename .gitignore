@@ -22,6 +22,7 @@ hs_err_pid*
 
 build/
 .gradle
+gradlew.bat 
 
 # Allow gradle wrapper props and jar file
 !**/gradle/wrapper/gradle-wrapper.jar
@@ -32,3 +33,6 @@ gradle-app.setting
 
 # Ignore mancenter dist folder
 mancenter/dist
+
+# gatling 
+results

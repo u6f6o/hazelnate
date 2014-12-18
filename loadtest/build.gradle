@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+sourceSets {
+    main {
+        scala {
+            srcDirs = ['src/main/gatling']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'http://repository.excilys.com/content/groups/public' }
+}
+
+dependencies {
+    compile "io.gatling.highcharts:gatling-charts-highcharts:${gatlingVerion}"
+    compile "org.scala-lang:scala-compiler:${scalaVersion}"
+    compile "org.scala-lang:scala-library:${scalaVersion}"
+}
+
+task insert100kInhabitants(type: JavaExec, group: "hazelnate") {
+    classpath = sourceSets.main.runtimeClasspath
+    main = gattlingMainClazz
+    args = Eval.me("['-s', '${insert10kInhabitants}']")
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
