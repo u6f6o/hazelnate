@@ -6,7 +6,7 @@ import io.gatling.http.Predef._
 
 import scala.concurrent.forkjoin.ThreadLocalRandom
 
-class Insert100kInhabitants extends Simulation {
+class Insert100kInhabitantsSimulation extends Simulation {
   val random = ThreadLocalRandom.current
   val footprints = csv("data/footprints.csv").records
   val forenames = csv("data/forenames.csv").records

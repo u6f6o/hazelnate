@@ -32,6 +32,10 @@ public class WorldsEnd {
                 (req, resp) -> WORLD_SERVICE.fetchCity(Long.valueOf(req.params(":cityId"))),
                 JSON_TRANSFORMER);
 
+        get("/world/inhabitants/:inhabitantId",
+                (req, resp) -> WORLD_SERVICE.fetchInhabitant(Long.valueOf(req.params(":inhabitantId"))),
+                JSON_TRANSFORMER);
+
         post("/world/inhabitants", "application/json",
                 (req, resp) -> {
                     try {

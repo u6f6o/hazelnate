@@ -55,6 +55,11 @@ public class WorldService {
                 }, ENTITY_TRANSFORMER::toCityModels);
     }
 
+    public InhabitantModel fetchInhabitant(Long id) {
+        return new TxContext<Inhabitant, InhabitantModel>().withTx(
+                session -> get(session, Inhabitant.class, id), ENTITY_TRANSFORMER::toModel);
+    }
+
     public IdentityModel createInhabitant(InhabitantModel inhabitantModel) {
         Inhabitant inhabitant = MODEL_TRANSFORMER.toEntity(inhabitantModel);
         return new TxContext<Serializable, IdentityModel>().withTx(

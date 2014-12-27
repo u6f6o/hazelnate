@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    compile "com.h2database:h2:${h2Version}"
     compile "io.gatling.highcharts:gatling-charts-highcharts:${gatlingVerion}"
     compile "org.scala-lang:scala-compiler:${scalaVersion}"
     compile "org.scala-lang:scala-library:${scalaVersion}"
@@ -26,6 +27,18 @@ task insert100kInhabitants(type: JavaExec, group: "hazelnate") {
     classpath = sourceSets.main.runtimeClasspath
     main = gattlingMainClazz
     args = Eval.me("['-s', '${insert10kInhabitants}']")
+}
+
+task loadCountries(type: JavaExec, group: "hazelnate") {
+    classpath = sourceSets.main.runtimeClasspath
+    main = gattlingMainClazz
+    args = Eval.me("['-s', '${loadCountries}']")
+}
+
+task loadInhabitants(type: JavaExec, group: "hazelnate") {
+    classpath = sourceSets.main.runtimeClasspath
+    main = gattlingMainClazz
+    args = Eval.me("['-s', '${loadInhabitants}']")
 }
 
 tasks.withType(ScalaCompile) {
