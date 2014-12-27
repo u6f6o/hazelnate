@@ -40,9 +40,13 @@ curl http://localhost:4567/world/countries/66
 curl -H "Content-Type: application/json" -d '{ "name": "Paolo Pinkel", "age": "34", "hometown": { "id": "13" }, "homeland": { "id": "14" }, "languages": [ { "id": "20" }]}' http://localhost:4567/world/inhabitants
 ```
 
-#### Insert 100k inhabitants
+#### Gatling simulations
 ```zsh
-cd hazelnate 
-loadtest/gradlew -b loadtest/build.gradlew insert100kInhabitants
+# insert 100k inhabitants
+loadtest/gradlew -b loadtest/build.gradle insert100kInhabitants
+# randomly load countries for 5 minutes
+loadtest/gradlew -b loadtest/build.gradle loadCountries
+# randomly load inhabitants for 5 minutes
+loadtest/gradlew -b loadtest/build.gradle loadInhabitants
 ```
 
