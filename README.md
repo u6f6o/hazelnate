@@ -9,7 +9,7 @@ I initially created this project to get a better understanding of the hazelcast 
 * **mancenter**: wrapper to start up the hazelcast mancenter    
 * **loadtest**: some basic loadtests using gatling framework
 
-This project mainly focuses on the distributed caching abilities, hazelcast offers in conjunction with hibernate. Other powerful features like in-memory computing etc. are (currently) not covered. 
+This project mainly focuses on the distributed caching abilities hazelcast offers in conjunction with hibernate. Other powerful features like in-memory computing etc. are (currently) not covered. 
 
 ### Quick start
 To start the application, simply clone the repo and execute the following commands one after another. The whole application is build using gradle wrapper. 
@@ -49,4 +49,3 @@ loadtest/gradlew -b loadtest/build.gradle loadCountries
 # randomly load inhabitants for 5 minutes
 loadtest/gradlew -b loadtest/build.gradle loadInhabitants
 ```
-
