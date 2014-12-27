@@ -12,6 +12,7 @@ I initially created this project to get a better understanding of the hazelcast 
 This project mainly focuses on the distributed caching abilities, hazelcast offers in conjunction with hibernate. Other powerful features like in-memory computing etc. are (currently) not covered. 
 
 ### Quick start
+To start the application, simply clone the repo and execute the following commands one after another. The whole application is build using gradle wrapper. 
 
 ```zsh
 git clone https://github.com/u6f6o/hazelnate.git 
@@ -28,6 +29,8 @@ client/gradlew -b client/build.gradle startClient
 ```
 
 #### Access REST api 
+The client basically offers a REST api which represents the world. You can fetch different things (countries, cities, languages etc.) or add new inhabitants to the world. For more information about the REST api, have a look at the WorldsEnd class. 
+
 ```zsh
 # load whole world 
 curl http://localhost:4567/world
