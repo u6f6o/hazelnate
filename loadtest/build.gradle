@@ -21,6 +21,10 @@ dependencies {
     compile "io.gatling.highcharts:gatling-charts-highcharts:${gatlingVerion}"
     compile "org.scala-lang:scala-compiler:${scalaVersion}"
     compile "org.scala-lang:scala-library:${scalaVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
 }
 
 task insert100kInhabitants(type: JavaExec, group: "hazelnate") {
