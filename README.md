@@ -3,9 +3,9 @@
 I initially created this project to get a better understanding of the hazelcast in-memory data grid. As we started to setup hazelcast on one of my clients main products, I also used it to clarify certain miss-understandings and to reproduce glitches we approached during the setup phase. 
 
 ### The project currently has 5 modules
-* **client**: contains the main "business" logic
+* **application**: contains the main "business" logic
 * **database**: wrapper to start up a h2 database 
-* **server**: represents a single hazelcast server node
+* **node**: represents a single hazelcast node node
 * **mancenter**: wrapper to start up the hazelcast mancenter    
 * **loadtest**: some basic loadtests using gatling framework
 
@@ -21,15 +21,15 @@ cd hazelnate
 database/gradlew -b database/build.gradle startDatabase
 # start the mancenter on a new console
 mancenter/gradlew -b mancenter/build.gradle startMancenter
-# start the hazelcast server on a new console
-server/gradlew -b server/build.gradle startServer
-# start the client on a new console
-client/gradlew -b client/build.gradle startClient
+# start the hazelcast node on a new console
+node/gradlew -b node/build.gradle startNode
+# start the application on a new console
+application/gradlew -b application/build.gradle startApplication
 
 ```
 
 #### Access REST api 
-The client basically offers a REST api which represents the world. You can fetch different things (countries, cities, languages etc.) or add new inhabitants to the world. For more information about the REST api, have a look at the WorldsEnd class. 
+The application basically offers a REST api which represents the world. You can fetch different things (countries, cities, languages etc.) or add new inhabitants to the world. For more information about the REST api, have a look at the WorldsEnd class.
 
 ```zsh
 # load whole world 
