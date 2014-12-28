@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.u6f6o.apps.hazelnate.application.domain">
+    <class name="World" table="WORLD">
+        <cache usage="read-only"/>
+        <id name="id" column="WORLD_ID"/>
+        <property name="name" column="NAME"/>
+        <set name="countries" cascade="all">
+            <cache usage="read-write"/>
+            <key column="WORLD_ID" not-null="true" />
+            <one-to-many class="Country"/>
+        </set>
+    </class>
+</hibernate-mapping>
