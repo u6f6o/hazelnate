@@ -26,7 +26,7 @@ dependencies {
     compile "ch.qos.logback:logback-classic:${logbackVersion}"
 }
 
-task startServer(type: JavaExec, group: "hazelnate") {
+task startNode(type: JavaExec, group: "hazelnate") {
     main mainClazz
     classpath = sourceSets.main.runtimeClasspath
     jvmArgs [ "-Dhazelcast.logging.type=slf4j" ]

@@ -1,4 +1,4 @@
-package com.u6f6o.apps.hazelnate.server;
+package com.u6f6o.apps.hazelnate.node;
 
 import com.hazelcast.config.ClasspathXmlConfig;
 import com.hazelcast.core.Hazelcast;
