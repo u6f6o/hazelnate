@@ -2,6 +2,14 @@ apply plugin: "idea"
 apply plugin: "java"
 apply plugin: "groovy"
 
+def props = new Properties()
+new File('../libs.properties').withInputStream {
+    stream -> props.load(stream)
+}
+for(prop in props) {
+    project.ext[prop.key] = prop.value
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

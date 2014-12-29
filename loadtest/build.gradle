@@ -3,6 +3,14 @@ apply plugin: 'scala'
 apply plugin: 'idea'
 apply plugin: 'application'
 
+def props = new Properties()
+new File('../libs.properties').withInputStream {
+    stream -> props.load(stream)
+}
+for(prop in props) {
+    project.ext[prop.key] = prop.value
+}
+
 sourceSets {
     main {
         scala {
