@@ -3,7 +3,7 @@ apply plugin: "java"
 apply plugin: "groovy"
 
 def props = new Properties()
-new File('../libs.properties').withInputStream {
+new File(projectDir.getParent(), 'libs.properties').withInputStream {
     stream -> props.load(stream)
 }
 for(prop in props) {
