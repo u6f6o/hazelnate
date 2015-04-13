@@ -49,3 +49,9 @@ gradlew -p loadtest loadCountries
 # randomly load inhabitants for 5 minutes
 gradlew -p loadtest loadInhabitants
 ```
+
+## License
+
+Copyright © 2015 Ulf Gitschthaler
+
+Distributed under the MIT License.
