@@ -1,0 +1,11 @@
+def props = new Properties()
+new File(projectDir, 'libs.properties').withInputStream {
+    stream -> props.load(stream)
+}
+for(prop in props) {
+    project.ext[prop.key] = prop.value
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "${gradleVersion}"
+}
