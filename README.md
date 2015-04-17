@@ -18,13 +18,13 @@ To start the application, simply clone the repo and execute the following comman
 git clone https://github.com/u6f6o/hazelnate.git 
 cd hazelnate
 # start the database on a new console 
-gradlew -p database startDatabase
+./gradlew -p database startDatabase
 # start the mancenter on a new console
-gradlew -p mancenter startMancenter
+./gradlew -p mancenter startMancenter
 # start the hazelcast node on a new console
-gradlew -p node startNode
+./gradlew -p node startNode
 # start the application on a new console
-gradlew -p application startApplication
+./gradlew -p application startApplication
 
 ```
 
@@ -43,11 +43,11 @@ curl -H "Content-Type: application/json" -d '{ "name": "Paolo Pinkel", "age": "3
 #### Gatling simulations
 ```zsh
 # insert 100k inhabitants
-gradlew -p loadtest insert100kInhabitants
+./gradlew -p loadtest insert100kInhabitants
 # randomly load countries for 5 minutes
-gradlew -p loadtest loadCountries
+./gradlew -p loadtest loadCountries
 # randomly load inhabitants for 5 minutes
-gradlew -p loadtest loadInhabitants
+./gradlew -p loadtest loadInhabitants
 ```
 
 ## License
