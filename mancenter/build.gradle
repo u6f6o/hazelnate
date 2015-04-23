@@ -37,7 +37,7 @@ dependencies {
 ext {
     distDir = "${projectDir}/dist"
 
-    downloadUrl = "http://download.hazelcast.com/download.jsp?version=hazelcast-${hazelcastVersion}"
+    downloadUrl = "http://download.hazelcast.com/download.jsp?version=hazelcast-${hazelcastVersion}&p="
     zipFilePath = "${distDir}/hazelcast-${hazelcastVersion}.zip"
     warFilePath = "${distDir}/mancenter-${hazelcastVersion}.war"
 
