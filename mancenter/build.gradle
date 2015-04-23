@@ -1,5 +1,8 @@
-apply plugin: "idea"
-apply plugin: "java"
+plugins {
+    id "java"
+    id "idea"
+    id "de.undercouch.download" version "1.2"
+}
 
 def props = new Properties()
 new File(projectDir.getParent(), 'libs.properties').withInputStream {
@@ -49,12 +52,13 @@ clean{
     delete warFilePath
 }
 
-task downloadZip(group: "hazelnate") {
+task downloadZip(group: "hazelnate", type: de.undercouch.gradle.tasks.download.Download) {
     outputs.file file(zipFilePath)
-    logging.setLevel(LogLevel.INFO)
-    doLast {
+    src downloadUrl
+    dest zipFilePath
+
+    doFirst {
         new File(distDir).mkdirs()
-        ant.get(src: downloadUrl, dest: zipFilePath)
     }
 }
 
@@ -81,3 +85,5 @@ task startMancenter(dependsOn: extractWar, type: JavaExec, group: "hazelnate") {
 task wrapper(type: Wrapper) {
     gradleVersion = "2.1"
 }
+
+extractWar.dependsOn downloadZip
